@@ -221,7 +221,7 @@ body {
   background: var(--body-bg-color);
   box-sizing: border-box;
   color: var(--text-color);
-  font-family: HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1em;
   line-height: 2;
   min-height: 100%;
@@ -234,7 +234,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: HarmonyOS_Regular, HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1242,8 +1242,8 @@ header.header {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: HarmonyOS_Regular, HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1.375em;
+  font-family: HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.8em;
   font-weight: normal;
   line-height: 1.5;
   margin: 0;
@@ -2059,7 +2059,7 @@ header.header {
   width: 4px;
 }
 .post-body {
-  font-family: HarmonyOS_Regular, HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2246,7 +2246,7 @@ header.header {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: HarmonyOS_Regular, HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: HarmonyOS_Regular, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.65em;
   margin-top: 3px;
 }
