@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>‘和光同尘’</title>
+  
+  <subtitle>Stay hungry！Stay foolish！</subtitle>
+  <link href="https://cshengc.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://cshengc.github.io/"/>
+  <updated>2022-08-03T15:29:26.930Z</updated>
+  <id>https://cshengc.github.io/</id>
+  
+  <author>
+    <name>ShengCao</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://cshengc.github.io/2022/07/29/hello-world/"/>
+    <id>https://cshengc.github.io/2022/07/29/hello-world/</id>
+    <published>2022-07-29T13:31:46.000Z</published>
+    <updated>2022-08-03T15:29:26.930Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p> <span id="more"></span><h2 id="span-class-md-colorify-md-colorify-success-style-color-67-c-23-a-quick-start-123-abc-span" id="Quick-Start123ABC"><span class="md-colorify md-colorify--success" style="color: #67C23A;">Quick Start123ABC</span></h2><h3 id="create-a-new-post" id="Create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">writing</a></p><h3 id="run-server" id="Run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files" id="Generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites" id="Deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日常" scheme="https://cshengc.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    <category term="生活" scheme="https://cshengc.github.io/categories/%E6%97%A5%E5%B8%B8/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="随想" scheme="https://cshengc.github.io/categories/%E6%97%A5%E5%B8%B8/%E9%9A%8F%E6%83%B3/"/>
+    
+    <category term="日记" scheme="https://cshengc.github.io/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+    <category term="Hexo" scheme="https://cshengc.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+</feed>
