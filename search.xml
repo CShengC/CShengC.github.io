@@ -70,6 +70,37 @@
     </entry>
     
     
+    
+    <entry>
+      <title>对hexo开发个人博客的介绍---样式配置（一）</title>
+      <link href="/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E5%B7%A5%E5%85%B7%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E5%B7%A5%E5%85%B7%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>本文主要用于记录，通过对主题配置文件和站点配置文件的配置以及额外工具包的安装。</p> <span id="more"></span><p>参考文档</p><p>查看此博客文档:   <a href="https://blog.panoshu.top/blog/fbbe79ce/">《Hexo 博客免费部署方案以及 Vercel 托管并使用 CND 加速访问》</a></p><p>查看此博客文档: <a href="https://blog.panoshu.top/blog/cb27ab6f/">《Hexo 博客 NexT 主题设置之使用 HarmonyOS 字体》</a></p><p>查看此博客文档:   <a href="https://blog.panoshu.top/blog/9db7e29f/">《Hexo 博客 NexT 主题设置之 KaTex 公式与 Markdown 复杂表格》</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+          <category> 开发 </category>
+          
+          <category> 样式 </category>
+          
+          <category> 控件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
