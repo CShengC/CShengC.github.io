@@ -25,31 +25,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"cshengc.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":true,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta name="description" content="本文主要用于记录，并使用python脚本进行自动化部署到github page和vecal关联部署站点。">
+    <meta name="description" content="本文主要用于记录，并使用python脚本进行用户画像的词云图的生成。">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="对博客自动化部署python脚本的介绍">
-<meta property="og:url" content="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="利用python进行用户啊画像词云图的生成---wordcloud">
+<meta property="og:url" content="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/index.html">
 <meta property="og:site_name" content="‘和光同尘’">
-<meta property="og:description" content="本文主要用于记录，并使用python脚本进行自动化部署到github page和vecal关联部署站点。">
+<meta property="og:description" content="本文主要用于记录，并使用python脚本进行用户画像的词云图的生成。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-07T13:31:46.000Z">
-<meta property="article:modified_time" content="2022-08-07T16:44:47.804Z">
+<meta property="article:modified_time" content="2022-08-07T17:25:11.834Z">
 <meta property="article:author" content="CaoSheng">
-<meta property="article:tag" content="hexo">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="脚本">
-<meta property="article:tag" content="自动化部署">
+<meta property="article:tag" content="wordcloud">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/">
+<link rel="canonical" href="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/","path":"2022/08/07/如何使用python完成自动化部署/","title":"对博客自动化部署python脚本的介绍"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/","path":"2022/08/07/如何使用python完成用户词云图的生成/","title":"利用python进行用户啊画像词云图的生成---wordcloud"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>对博客自动化部署python脚本的介绍 | ‘和光同尘’</title>
+<title>利用python进行用户啊画像词云图的生成---wordcloud | ‘和光同尘’</title>
   
 
 
@@ -102,7 +101,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python-jiao-ben-yuan-ma-ru-xia"><span class="nav-number">1.</span> <span class="nav-text">Python脚本源码如下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yun-xing-python-jiao-ben"><span class="nav-number">2.</span> <span class="nav-text">运行Python脚本</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ji-ben-wen-jian"><span class="nav-number">1.</span> <span class="nav-text">基本文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python-jiao-ben-yuan-ma"><span class="nav-number">2.</span> <span class="nav-text">Python脚本源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yun-xing-python-jiao-ben"><span class="nav-number">3.</span> <span class="nav-text">运行Python脚本</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,18 +173,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -238,7 +237,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/">
+    <link itemprop="mainEntityOfPage" href="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -251,12 +250,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="对博客自动化部署python脚本的介绍 | ‘和光同尘’">
+      <meta itemprop="name" content="利用python进行用户啊画像词云图的生成---wordcloud | ‘和光同尘’">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          对博客自动化部署python脚本的介绍
+          利用python进行用户啊画像词云图的生成---wordcloud
         </h1>
 
         <div class="post-meta-container">
@@ -274,7 +273,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-08 00:44:47" itemprop="dateModified" datetime="2022-08-08T00:44:47+08:00">2022-08-08</time>
+      <time title="修改时间：2022-08-08 01:25:11" itemprop="dateModified" datetime="2022-08-08T01:25:11+08:00">2022-08-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,15 +285,31 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+          <a href="/categories/%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">语言</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/%E9%83%A8%E7%BD%B2/" itemprop="url" rel="index"><span itemprop="name">部署</span></a>
+          <a href="/categories/%E8%AF%AD%E8%A8%80/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/%E8%84%9A%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">脚本</span></a>
+          <a href="/categories/%E5%8D%9A%E5%AE%A2/%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%90%E8%90%A5/" itemprop="url" rel="index"><span itemprop="name">运营</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%90%E8%90%A5/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/" itemprop="url" rel="index"><span itemprop="name">用户画像</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">设计</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1/%E8%AF%8D%E4%BA%91%E5%9B%BE/" itemprop="url" rel="index"><span itemprop="name">词云图</span></a>
         </span>
     </span>
 
@@ -305,7 +320,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -323,16 +338,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>本文主要用于记录，并使用python脚本进行自动化部署到github page和vecal关联部署站点。</p>
+        <p>本文主要用于记录，并使用python脚本进行用户画像的词云图的生成。</p>
  <span id="more"></span>
-<h1 id="python-jiao-ben-yuan-ma-ru-xia">Python脚本源码如下</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">导入标准路径库 Path 用于不同平台如win，mac路径的统一</span></span><br><span class="line"><span class="string">导入系统标准库 用于一些系统的调用</span></span><br><span class="line"><span class="string">导入系统补充哭 用于一些文件的解压缩拷贝</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">#指令定义</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">op_call_ls =<span class="string">&#x27;ls -l&#x27;</span> </span><br><span class="line">op_call_cp =<span class="string">&#x27;cp&#x27;</span></span><br><span class="line">blog_post_dir =Path(<span class="string">&#x27;/Users/cs/Downloads/cs_workspace/cs_home_page/cs_hexo_blog/SVN_MAC_LOCAL/blog_hexo_github/source/_posts&#x27;</span>)</span><br><span class="line">blog_workspace_dir =Path(<span class="string">&#x27;/Users/cs/Downloads/cs_workspace/cs_home_page/cs_hexo_blog/SVN_MAC_LOCAL/blog_hexo_github&#x27;</span>)</span><br><span class="line">blog_generator=<span class="string">&#x27;hexo g &#x27;</span></span><br><span class="line">blog_deployment=<span class="string">&#x27;hexo d &#x27;</span></span><br><span class="line">blog_localwatch=<span class="string">&#x27;hexo s&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">#地址定义</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;workspace dirname: &quot;</span>+os.getcwd()) <span class="comment">#获取当前py脚本工作空间的路径</span></span><br><span class="line">current_path = os.path.dirname(__file__)  <span class="comment"># 获取当前py脚本的路径，并设置相对路径</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;current_path: &quot;</span>+current_path) <span class="comment">#打印当前相对路径的地址</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n\n\n&quot;</span>) <span class="comment">#将指令输出的结果显示在窗口中</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">文件拷贝</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#进行文件拷贝</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">str_change</span>(<span class="params"><span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="string">&#x27;bin&#x27;</span> <span class="keyword">in</span> <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        aa, bb = <span class="built_in">str</span>.split(<span class="string">&#x27;bin&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> aa + bb</span><br><span class="line">     </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func_copy</span>(<span class="params">primary_dir, target_dir</span>):  <span class="comment"># 拷贝方法 把原始文件夹的所有文件夹和文件 按照同样的名字拷贝到目标文件夹中</span></span><br><span class="line">    <span class="comment"># 遍历filepath下所有文件,包括目录</span></span><br><span class="line">    files = os.listdir(primary_dir)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> files:  <span class="comment"># i 是目录下的文件或文件夹</span></span><br><span class="line">        i = os.path.join(primary_dir, i)  <span class="comment"># 字符串拼接</span></span><br><span class="line">        i_new = os.path.join(target_dir, i)  <span class="comment"># 目标文件夹也要改变</span></span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(i):  <span class="comment"># 如果是文件夹</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(i_new):  <span class="comment"># 如果没新建过 新建同名目标文件夹</span></span><br><span class="line">                os.makedirs(i_new)</span><br><span class="line">            func_copy(i, i_new)     <span class="comment"># 递归循环下一个目录 复制目录里面的内容</span></span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># 不是文件夹 文件 判断字符串是否有_bin 粘贴到指定位置 并且修改名字</span></span><br><span class="line">            oldname = i</span><br><span class="line">            newname = str_change(i_new)</span><br><span class="line">            <span class="built_in">print</span>(oldname)</span><br><span class="line">            <span class="built_in">print</span>(newname)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(newname): <span class="comment"># 如果文件不存在,存在了就不拷贝了</span></span><br><span class="line">                shutil.copyfile(oldname, newname)                     <span class="comment"># 复制文件</span></span><br><span class="line"></span><br><span class="line">func_copy(current_path,blog_post_dir)</span><br><span class="line"><span class="comment">#进一次对目录的拷贝</span></span><br><span class="line"><span class="comment"># output = os.popen(&#x27;cp -r &#x27;+current_path+&#x27; &#x27;+blog_post_dir) #执行一条指令，并将指令执行结果集给output</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n\n\n&quot;</span>) <span class="comment">#将指令输出的结果显示在窗口中</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;changedir\n&quot;</span>) <span class="comment">#将指令输出的结果显示在窗口中</span></span><br><span class="line"><span class="comment"># #进行一次对工作目录的转换</span></span><br><span class="line">os.chdir(blog_workspace_dir)</span><br><span class="line"><span class="built_in">print</span>(os.getcwd())<span class="comment">#打印当前相对路径的地址)</span></span><br><span class="line"><span class="built_in">print</span>(os.listdir(os.getcwd()))</span><br><span class="line"></span><br><span class="line"><span class="comment">#进行博客生成</span></span><br><span class="line">output = os.popen(blog_generator) </span><br><span class="line"><span class="built_in">print</span>(output.read()) <span class="comment">#将指令输出的结果显示在窗口中</span></span><br><span class="line"><span class="comment">#进行博客本地预览</span></span><br><span class="line"><span class="comment"># output = os.popen(blog_localwatch) </span></span><br><span class="line"><span class="comment"># print(output.read()) #将指令输出的结果显示在窗口中</span></span><br><span class="line"><span class="comment">#进行博客部署到github</span></span><br><span class="line">output = os.popen(blog_deployment) </span><br><span class="line"><span class="built_in">print</span>(output.read()) <span class="comment">#将指令输出的结果显示在窗口中</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="ji-ben-wen-jian">基本文件</h1>
+<ol>
+<li>词云图基本描述文本</li>
+<li>词云图背景基本图片</li>
+<li>词语分割库 jieba</li>
+<li>科学计算库nump</li>
+<li>数据可视化分析库matplotlib</li>
+<li>词云库wordcloud</li>
+</ol>
+<p>使用以下代码进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy</span><br><span class="line">pip install matplotlib</span><br><span class="line">pip install jieba</span><br><span class="line">pip install wordcloud</span><br></pre></td></tr></table></figure>
+<h1 id="python-jiao-ben-yuan-ma">Python脚本源码</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 词云图</span></span><br><span class="line"><span class="comment"># pip install numpy</span></span><br><span class="line"><span class="comment"># pip install matplotlib</span></span><br><span class="line"><span class="comment"># pip install jieba</span></span><br><span class="line"><span class="comment"># pip install wordcloud</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, ImageColorGenerator, STOPWORDS  <span class="comment"># 词云，颜色生成器，停止词</span></span><br><span class="line"><span class="keyword">import</span> jieba  <span class="comment"># 词语切割</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  <span class="comment"># 数据可视化</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image  <span class="comment"># 处理图片</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  <span class="comment"># 科学计算</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(os.getcwd())</span></span><br><span class="line">current_path = os.path.dirname(__file__)  <span class="comment"># 设置相对路径</span></span><br><span class="line"><span class="comment"># print(current_path)</span></span><br><span class="line"></span><br><span class="line">path_txt = <span class="string">&#x27;&#x27;</span>  <span class="comment"># 文本路径</span></span><br><span class="line">path_bg = <span class="string">&#x27;&#x27;</span>  <span class="comment"># 词云背景模板路径</span></span><br><span class="line">font_path = <span class="string">&quot;/System/Library/Fonts/PingFang.ttc&quot;</span>  <span class="comment"># 设置字体，可以显示中文</span></span><br><span class="line">file = <span class="built_in">open</span>(current_path+<span class="string">&#x27;/source/text_word.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">text = file.read()  <span class="comment"># 读入一个中文txt文件,gbk -&gt; utf-8</span></span><br><span class="line">words = jieba.lcut(text)  <span class="comment"># 使用jieba库分词,生成字符串</span></span><br><span class="line">string = <span class="string">&#x27; &#x27;</span>.join(words)  <span class="comment"># 使用join()方法，将分词生成的字符串以空格进行分割,生成词云时，字符串之间需要为空格</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(string))  <span class="comment"># 输出词量</span></span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(current_path+<span class="string">&#x27;/source/super_sayaren.png&#x27;</span>)  <span class="comment"># 打开图片</span></span><br><span class="line">img_array = np.array(img)  <span class="comment"># 将图片装换为数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置停止词</span></span><br><span class="line">stopwords = <span class="built_in">set</span>()</span><br><span class="line">content = [line.strip() <span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(</span><br><span class="line">    current_path+<span class="string">&#x27;/source/stopwords.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).readlines()]</span><br><span class="line">stopwords.update(content)</span><br><span class="line">stopwords.add(<span class="string">&quot;不行&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置词云的背景，图片，字体大小等参数</span></span><br><span class="line">wc = WordCloud(</span><br><span class="line">    background_color= (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),  <span class="comment"># 设置显示内容在什么颜色内</span></span><br><span class="line">    width=<span class="number">1000</span>,  <span class="comment"># 设置图片宽,默认为400</span></span><br><span class="line">    height=<span class="number">500</span>,  <span class="comment"># 设置图片高,默认为200</span></span><br><span class="line">    mask=img_array,  <span class="comment"># 设置词云背景模板</span></span><br><span class="line">    font_path=font_path,  <span class="comment"># 设置字体路径</span></span><br><span class="line">    stopwords=stopwords,  <span class="comment"># 设置需要屏蔽的词，如果为空，则使用内置的STOPWORDS</span></span><br><span class="line">    scale=<span class="number">1.0</span>,  <span class="comment"># 图照比例进行放大画布，如设置为1.5，则长和宽都是原来画布的1.5倍</span></span><br><span class="line">    max_words=<span class="number">1000</span>,  <span class="comment"># max_words图片上显示的最大词语的个数</span></span><br><span class="line">    max_font_size=<span class="number">65</span>,  <span class="comment"># max_font_size为最大字体的大小</span></span><br><span class="line">    min_font_size=<span class="number">4</span>,  <span class="comment"># min_font_size为最小字体大小,默认为4</span></span><br><span class="line">    mode=<span class="string">&#x27;RGBA&#x27;</span>,  <span class="comment"># ,默认值RGB,当参数为“RGBA”并且background_color不为空时，背景为透明</span></span><br><span class="line">    relative_scaling=<span class="number">1</span>,  <span class="comment"># 词频和字体大小的关联性,默认值</span></span><br><span class="line">    collocations=<span class="literal">True</span>  <span class="comment"># 是否包括两个词的搭配</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">wc.generate_from_text(string)  <span class="comment"># 根据文本生成词云</span></span><br><span class="line"></span><br><span class="line">image_colors = ImageColorGenerator(img_array)  <span class="comment"># 获取color</span></span><br><span class="line"><span class="comment"># 按照给定的图片颜色布局生成字体颜色,当wordcloud尺寸比image大时，返回默认的颜色</span></span><br><span class="line">plt.imshow(wc.recolor(color_func=image_colors), interpolation=<span class="string">&quot;bilinear&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)  <span class="comment"># 关闭坐标轴</span></span><br><span class="line">plt.show()  <span class="comment"># 显示图片</span></span><br><span class="line">wc.to_file(current_path+<span class="string">&#x27;/source/word_cloud_super_sayaren.png&#x27;</span>)  <span class="comment"># 保存图片</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h1 id="yun-xing-python-jiao-ben">运行Python脚本</h1>
-<p>在markdown文本的目录下，使用终端工具运行python脚本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./post_blog.py </span><br></pre></td></tr></table></figure>
-<p>如下：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">bash</span></span><br></pre></td></tr></table></figure>
-<p>如下：</p>
+<p>在图片文本的目录下，使用终端工具运行python脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./user_wordcloud.py</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -350,7 +373,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" title="对博客自动化部署python脚本的介绍">https://cshengc.github.io/2022/08/07/如何使用python完成自动化部署/</a>
+      <a href="https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/" title="利用python进行用户啊画像词云图的生成---wordcloud">https://cshengc.github.io/2022/08/07/如何使用python完成用户词云图的生成/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -376,23 +399,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
               <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
               <a href="/tags/%E8%84%9A%E6%9C%AC/" rel="tag"><i class="fa fa-tag"></i> 脚本</a>
-              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" rel="tag"><i class="fa fa-tag"></i> 自动化部署</a>
+              <a href="/tags/wordcloud/" rel="tag"><i class="fa fa-tag"></i> wordcloud</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E5%B7%A5%E5%85%B7%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F%E9%85%8D%E7%BD%AE/" rel="prev" title="对hexo开发个人博客的介绍---样式配置（一）">
-                  <i class="fa fa-chevron-left"></i> 对hexo开发个人博客的介绍---样式配置（一）
-                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E9%83%A8%E7%BD%B2%E5%BC%80%E5%8F%91%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="对hexo开发个人博客的介绍---环境部署配置（一）">
-                  对hexo开发个人博客的介绍---环境部署配置（一） <i class="fa fa-chevron-right"></i>
+                <a href="/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" rel="next" title="对hexo开发个人博客的介绍（三）---自动化部署脚本">
+                  对hexo开发个人博客的介绍（三）---自动化部署脚本 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -425,13 +444,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">10k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">9 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -493,7 +512,7 @@
 
 
   <script src="https://unpkg.com/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://cshengc.github.io/2022/08/07/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%AE%8C%E6%88%90%E7%94%A8%E6%88%B7%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/"}</script>
   <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/quicklink.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
