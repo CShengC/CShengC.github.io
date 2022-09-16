@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+<link rel="preconnect" href="https://fonts.font.im" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-cs.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-cs.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-cs.ico">
+  <link rel="mask-icon" href="/images/logocs.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=HarmonyOS_Regular:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-bounce.css">
+  <script src="https://unpkg.com/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cshengc.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":true,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
+
+    <meta name="description" content="本文主要用于记录关于 qemu 虚拟化软件的介绍和安装。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="【虚拟化】对QEMU虚拟化技术的介绍和操作">
+<meta property="og:url" content="https://cshengc.github.io/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/QEMU%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="「和光同尘」">
+<meta property="og:description" content="本文主要用于记录关于 qemu 虚拟化软件的介绍和安装。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-01T01:36:05.000Z">
+<meta property="article:modified_time" content="2022-09-16T16:27:22.918Z">
+<meta property="article:author" content="CaoSheng">
+<meta property="article:tag" content="虚拟化,QEMU">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cshengc.github.io/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/QEMU%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cshengc.github.io/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/QEMU%E5%9F%BA%E7%A1%80/","path":"2021/09/01/计算机技术/QEMU基础/","title":"【虚拟化】对QEMU虚拟化技术的介绍和操作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【虚拟化】对QEMU虚拟化技术的介绍和操作 | 「和光同尘」</title>
+  
+
+
+
+
+
+<link rel="preconnect" href="https://s1.hdslb.com/" />
+<link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" />
+<link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" />
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="「和光同尘」" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">「和光同尘」</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay hungry！Stay foolish！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#qemu-yi-qemu-xu-ni-hua-ruan-jian-jie-shao-yu-an-zhuang"><span class="nav-number">1.</span> <span class="nav-text">【qemu】（一）— qemu 虚拟化软件介绍与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#strong-guan-yu-qemu-strong"><span class="nav-number">1.1.</span> <span class="nav-text">关于 qemu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qemu-ke-yi-zuo-xie-shi-yao"><span class="nav-number">1.2.</span> <span class="nav-text">QEMU 可以做些什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qemu-de-an-zhuang"><span class="nav-number">1.3.</span> <span class="nav-text">QEMU 的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#su-zhu-ji-huan-jing"><span class="nav-number">1.3.1.</span> <span class="nav-text">宿主机环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yuan-ma-bian-yi-an-zhuang"><span class="nav-number">1.3.2.</span> <span class="nav-text">源码编译安装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bian-yi-an-zhuang-yi-chang-chu-li"><span class="nav-number">1.3.3.</span> <span class="nav-text">编译安装异常处理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yan-zheng"><span class="nav-number">1.3.4.</span> <span class="nav-text">验证：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xiao-jie"><span class="nav-number">1.3.5.</span> <span class="nav-text">小结：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#qemu-er-qemu-xu-ni-hua-ruan-jian-shi-yong"><span class="nav-number">2.</span> <span class="nav-text">【qemu】（二）— qemu 虚拟化软件使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#qemu-yun-xing-huan-jing"><span class="nav-number">2.0.1.</span> <span class="nav-text">Qemu 运行环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yan-zheng-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xiao-jie-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">小结：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#can-kao-wen-dang"><span class="nav-number">3.</span> <span class="nav-text">参考文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gan-wu"><span class="nav-number">4.</span> <span class="nav-text">感悟</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CaoSheng"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">CaoSheng</p>
+  <div class="site-description" itemprop="description">苟日新，日日新，又日新</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CShengC" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CShengC" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:csheng_c@163.com" title="E-Mail → mailto:csheng_c@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://unpkg.com/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CShengC" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cshengc.github.io/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/QEMU%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CaoSheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="「和光同尘」">
+      <meta itemprop="description" content="苟日新，日日新，又日新">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【虚拟化】对QEMU虚拟化技术的介绍和操作 | 「和光同尘」">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【虚拟化】对QEMU虚拟化技术的介绍和操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-01 09:36:05" itemprop="dateCreated datePublished" datetime="2021-09-01T09:36:05+08:00">2021-09-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-17 00:27:22" itemprop="dateModified" datetime="2022-09-17T00:27:22+08:00">2022-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机科学与技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机应用技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <center>本文主要用于记录关于 qemu 虚拟化软件的介绍和安装。</center>
+ <span id="more"></span>
+<h1 id="qemu-yi-qemu-xu-ni-hua-ruan-jian-jie-shao-yu-an-zhuang">【qemu】（一）— qemu 虚拟化软件介绍与安装</h1>
+<h2 id="strong-guan-yu-qemu-strong" id="关于-qemu"><strong>关于 qemu</strong></h2>
+<p>qemu（quick emulator）是一款可执行<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%A1%AC%E4%BB%B6%E8%99%9A%E6%8B%9F%E5%8C%96">硬件虚拟化</a>的（hardware virtualization）开源<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BB%BF%E7%9C%9F%E5%99%A8">仿真器</a>（Emulator）。</p>
+<p>对于 qemu 的介绍可以查看该<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/QEMU">关于 qemu 的 wiki 词条链接</a>。</p>
+<h2 id="qemu-ke-yi-zuo-xie-shi-yao" id="QEMU-可以做些什么">QEMU 可以做些什么</h2>
+<p>于嵌入式行业 qemu 可以帮助开发者：学习裸机编程，RTOS 的编程，网络协议的学习，图形界面的学习。使用 qemu 确实能够在一定程度上节省时间，提高软件调试与分析的效率。</p>
+<p>用软件模拟硬件的操作行为，本质上来说和实际的硬件操作区别不大，因为在嵌入式编程中，最底层的指令集的行为已经在 qemu 中实现的很好了，硬件模拟方面，qemu 也大致能够模拟操作寄存器后，处理器的行为，这些在对 qemu 的底层支持和学习的过程中已经进行了大量的实验和研究。</p>
+<p>理解 qemu 的使用，会对嵌入式软件原理有着更加深刻的理解，从更大的层面上来说，虚拟化的行为本来就是一种很好的解决方案，去设计一个嵌入式软件方案，去演示一个底层软件，或者节约下载调试时间，开发嵌入式上层业务系统软件的功能层面来说，qemu 都是值得去研究和使用的工具。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/DP29syM41zyGndVF/article/details/117457819">嵌入式编程中使用 qemu 能够做什么？</a>。</p>
+<h2 id="qemu-de-an-zhuang" id="QEMU-的安装">QEMU 的安装</h2>
+<p>关于 qemu 的安装官方提供有两种安装方式：</p>
+<ol>
+<li>源码编译安装。</li>
+<li>使用包管理进行安装。</li>
+</ol>
+<p>详情参考官方网站的 <a target="_blank" rel="noopener" href="https://www.qemu.org/download/">qemu 下载详情页</a>。</p>
+<h3 id="su-zhu-ji-huan-jing" id="宿主机环境：">宿主机环境：</h3>
+<p>本机安装环境为 mac 系统的 Ubuntu 20.04.5 LTS 虚拟机，宿主机环境如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">配置项</th>
+<th style="text-align:left">配置名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Operating System</td>
+<td style="text-align:left">Ubuntu 20.04.5 LTS</td>
+</tr>
+<tr>
+<td style="text-align:left">Kernel</td>
+<td style="text-align:left">Linux 5.15.0-46-generic</td>
+</tr>
+<tr>
+<td style="text-align:left">Architecture</td>
+<td style="text-align:left">x86-64</td>
+</tr>
+<tr>
+<td style="text-align:left">Virtualization</td>
+<td style="text-align:left">kvm</td>
+</tr>
+<tr>
+<td style="text-align:left">Processor</td>
+<td style="text-align:left">Intel® Core™ i7-9750H CPU @ 2.60GHz × 2</td>
+</tr>
+<tr>
+<td style="text-align:left">Graphics</td>
+<td style="text-align:left">virgl (Intel® UHD Graphics 630 (Compat))</td>
+</tr>
+<tr>
+<td style="text-align:left">Memory</td>
+<td style="text-align:left">1.9 GiB</td>
+</tr>
+<tr>
+<td style="text-align:left">Disk Capacity</td>
+<td style="text-align:left">68.7 GB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="yuan-ma-bian-yi-an-zhuang" id="源码编译安装：">源码编译安装：</h3>
+<p>To download and build QEMU 7.1.0-rc4:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.qemu.org/qemu-7.1.0-rc4.tar.xz</span><br><span class="line">tar xvJf qemu-7.1.0-rc4.tar.xz</span><br><span class="line"><span class="built_in">cd</span> qemu-7.1.0-rc4</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="bian-yi-an-zhuang-yi-chang-chu-li" id="编译安装异常处理：">编译安装异常处理：</h3>
+<p>缺少 Ninja 工具</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cs<span class="variable">@ubuntu</span><span class="symbol">:~/Desktop/workspace/qemu-</span><span class="number">7.1</span>.<span class="number">0</span>-rc3**<span class="variable">$ </span>./configure</span><br><span class="line"><span class="title class_">Using</span> <span class="string">&#x27;./build&#x27;</span> as the directory <span class="keyword">for</span> build output</span><br><span class="line"><span class="symbol">ERROR:</span> <span class="title class_">Cannot</span> find <span class="title class_">Ninja</span></span><br></pre></td></tr></table></figure>
+<p>使用以下指令：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install ninja-build<span class="comment">##使用该指令安装Ninja工具</span></span><br></pre></td></tr></table></figure>
+<p>缺少 glib 开发工具库</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cs@ubuntu:~/Desktop/workspace/qemu<span class="string">-7</span>.1.0-rc3$ ./configure</span><br><span class="line">Using &#x27;./build&#x27; as the directory for build output</span><br><span class="line"><span class="keyword">ERROR: </span>glib<span class="string">-2</span>.56 gthread<span class="string">-2</span>.0 is required to compile QEMU</span><br></pre></td></tr></table></figure>
+<p>使用以下指令：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install libglib2<span class="number">.0</span>-dev<span class="comment">##使用该指令安装glib工具</span></span><br></pre></td></tr></table></figure>
+<p>缺少 pixman-1 运行时依赖库</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Run-time dependency pixman<span class="string">-1</span> found: NO (tried pkgconfig)</span><br><span class="line"></span><br><span class="line">../meson.build:522:2: ERROR: Dependency &quot;pixman<span class="string">-1</span>&quot; not found, tried pkgconfig</span><br><span class="line">A full log can be found at /home/cs/Desktop/workspace/qemu<span class="string">-7</span>.1.0-rc3/build/meson-logs/meson-log.txt</span><br><span class="line"></span><br><span class="line"><span class="keyword">ERROR: </span>meson setup failed</span><br></pre></td></tr></table></figure>
+<p>使用以下指令：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> apt-get install libpixman-<span class="number">1</span>-dev##使用该指令安装pixman-<span class="number">1</span>运行时依赖库</span><br></pre></td></tr></table></figure>
+<p>编译过程中会遇到一些问题，大多是一些库和包找不到的情况，具体的可以参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/bear_miao/article/details/123539177?spm=1001.2101.3001.6650.5&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-5-123539177-blog-112575011.pc_relevant_multi_platform_featuressortv2dupreplace&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-5-123539177-blog-112575011.pc_relevant_multi_platform_featuressortv2dupreplace&amp;utm_relevant_index=6">CSDN-BLOG-LinuxOS 学习 qemu</a>。</p>
+<h3 id="yan-zheng" id="验证：">验证：</h3>
+<p>安装完成后可以使用 qemu 工具查看工具版本号进行验证安装成功</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cs</span>@ubuntu:~$ qemu-arm -version</span><br><span class="line"></span><br><span class="line"><span class="attribute">qemu</span>-arm version <span class="number">7</span>.<span class="number">0</span>.<span class="number">93</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">Copyright</span> (c) <span class="number">2003</span>-<span class="number">2022</span> Fabrice Bellard and the QEMU Project developers</span><br></pre></td></tr></table></figure>
+<h3 id="xiao-jie" id="小结：">小结：</h3>
+<p>编译过程中，因为未设置编译选项，所以对所有的平台系统进行了编译，编译时间有点长所以可以耐心等待。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhaixue.cc/qemu/qemu-intro.html">https://www.zhaixue.cc/qemu/qemu-intro.html</a>)</li>
+</ul>
+<h1 id="qemu-er-qemu-xu-ni-hua-ruan-jian-shi-yong">【qemu】（二）— qemu 虚拟化软件使用</h1>
+<p>发表于 2022-08-27 更新于 2022-09-07 分类于 <a href="https://cshengc.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a> ， <a href="https://cshengc.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a> ， <a href="https://cshengc.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%B7%A5%E5%85%B7/">工具</a> 本文字数： 624 阅读时长 ≈ 1 分钟</p>
+<p>本文主要用于记录关于 qemu 虚拟化软件的常用指令和功能。</p>
+<h3 id="qemu-yun-xing-huan-jing" id="Qemu-运行环境">Qemu 运行环境</h3>
+<p>关于 qemu 的运行环境上篇中已经详细的介绍了。</p>
+<p>本机安装环境为 mac 系统的 Ubuntu 20.04.5 LTS 虚拟机，宿主机环境如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">配置项</th>
+<th style="text-align:left">配置名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Operating System</td>
+<td style="text-align:left">Ubuntu 20.04.5 LTS</td>
+</tr>
+<tr>
+<td style="text-align:left">Kernel</td>
+<td style="text-align:left">Linux 5.15.0-46-generic</td>
+</tr>
+<tr>
+<td style="text-align:left">Architecture</td>
+<td style="text-align:left">x86-64</td>
+</tr>
+<tr>
+<td style="text-align:left">Virtualization</td>
+<td style="text-align:left">kvm</td>
+</tr>
+<tr>
+<td style="text-align:left">Processor</td>
+<td style="text-align:left">Intel® Core™ i7-9750H CPU @ 2.60GHz × 2</td>
+</tr>
+<tr>
+<td style="text-align:left">Graphics</td>
+<td style="text-align:left">virgl (Intel® UHD Graphics 630 (Compat))</td>
+</tr>
+<tr>
+<td style="text-align:left">Memory</td>
+<td style="text-align:left">1.9 GiB</td>
+</tr>
+<tr>
+<td style="text-align:left">Disk Capacity</td>
+<td style="text-align:left">68.7 GB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="yan-zheng-1" id="验证">验证</h3>
+<p>安装完成后可以使用 qemu 工具查看工具版本号进行验证安装成功</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cs</span>@ubuntu:~$ qemu-arm -version</span><br><span class="line"></span><br><span class="line"><span class="attribute">qemu</span>-arm version <span class="number">7</span>.<span class="number">0</span>.<span class="number">93</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">Copyright</span> (c) <span class="number">2003</span>-<span class="number">2022</span> Fabrice Bellard and the QEMU Project developers</span><br></pre></td></tr></table></figure>
+<h3 id="xiao-jie-1" id="小结：-2">小结：</h3>
+<p>编译过程中，因为未设置编译选项，所以对所有的平台系统进行了编译，编译时间有点长所以可以耐心等待。</p>
+<h1 id="can-kao-wen-dang">参考文档</h1>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="http://wiki.qemu.org/Index.html">QEMU 的主页</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/DP29syM41zyGndVF/article/details/117457819">嵌入式编程中使用 qemu 能够做什么？</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bear_miao/article/details/123539177?spm=1001.2101.3001.6650.5&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-5-123539177-blog-112575011.pc_relevant_multi_platform_featuressortv2dupreplace&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-5-123539177-blog-112575011.pc_relevant_multi_platform_featuressortv2dupreplace&amp;utm_relevant_index=6">CSDN-BLOG-LinuxOS 学习 qemu</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.zhaixue.cc/qemu/qemu-intro.html">王利涛博客 - qemu</a></p>
+</li>
+<li></li>
+</ul>
+<h1 id="gan-wu">感悟</h1>
+<p>相逢恨晚，心疼当年为了学习而花钱买的板子，进阶学习要板子，基础学习还是模拟的就够用了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CaoSheng
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cshengc.github.io/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/QEMU%E5%9F%BA%E7%A1%80/" title="【虚拟化】对QEMU虚拟化技术的介绍和操作">https://cshengc.github.io/2021/09/01/计算机技术/QEMU基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96-QEMU/" rel="tag"><i class="fa fa-tag"></i> 虚拟化,QEMU</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/SVN%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="prev" title="【版本控制工具】对SVN版本控制工具的介绍和操作">
+                  <i class="fa fa-chevron-left"></i> 【版本控制工具】对SVN版本控制工具的介绍和操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/Python%E5%AE%9E%E4%BE%8B_%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E8%AF%8D%E4%BA%91%E5%9B%BE/" rel="next" title="【Python例】利用 python 进行用户画像词云图的生成 ---wordcloud">
+                  【Python例】利用 python 进行用户画像词云图的生成 ---wordcloud <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CaoSheng</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">43k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">39 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/comments.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/utils.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/motion.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/next-boot.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/pjax.js"></script>
+
+  
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://unpkg.com/pdfobject@2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"neutral","dark":"dark"},"js":{"url":"https://unpkg.com/mermaid@9.1.3/dist/mermaid.min.js","integrity":"sha256-TIYL00Rhw/8WaoUhYTLX9SKIEFdXxg+yMWSLVUbhiLg="}}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/tags/mermaid.js"></script>
+
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/fancybox.js"></script>
+
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://unpkg.com/katex@0.16.0/dist/katex.min.css" integrity="sha256-uik/hNqHWZldXh/0K35nqOSCff9F61/ZOFReqNOBgB0=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://unpkg.com/katex@0.16.0/dist/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/math/katex.js"></script>
+
+
+  <script src="https://unpkg.com/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://cshengc.github.io/2021/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/QEMU%E5%9F%BA%E7%A1%80/"}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/quicklink.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

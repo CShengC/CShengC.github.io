@@ -25,31 +25,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"cshengc.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":2,"unescape":true,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta name="description" content="希望拥抱有趣灵魂，期待拥有美好明天   原  中航某二院706所 | 基础软件技术中心 ｜软件设计师 原 中船某系统院 5所 | 机电产品室&#x2F;集成联调部｜系统调试工程师  发呆患者">
+    <meta name="description" content="本文主要用于记录，并使用写作工具对个人博客的资源进行管理。">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="CaoSheng">
-<meta property="og:url" content="https://cshengc.github.io/about/index.html">
+<meta property="og:title" content="【博客】对博客部署小工具的介绍以及使用">
+<meta property="og:url" content="https://cshengc.github.io/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="「和光同尘」">
-<meta property="og:description" content="希望拥抱有趣灵魂，期待拥有美好明天   原  中航某二院706所 | 基础软件技术中心 ｜软件设计师 原 中船某系统院 5所 | 机电产品室&#x2F;集成联调部｜系统调试工程师  发呆患者">
+<meta property="og:description" content="本文主要用于记录，并使用写作工具对个人博客的资源进行管理。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cshengc.github.io/about/word_cloud_super_sayaren.png">
-<meta property="article:published_time" content="2022-07-29T13:31:46.000Z">
-<meta property="article:modified_time" content="2022-09-16T07:39:50.876Z">
+<meta property="article:published_time" content="2021-09-01T01:36:05.000Z">
+<meta property="article:modified_time" content="2022-09-16T16:23:09.105Z">
 <meta property="article:author" content="CaoSheng">
-<meta property="article:tag" content="fighting">
+<meta property="article:tag" content="hexo,博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cshengc.github.io/about/word_cloud_super_sayaren.png">
 
 
-<link rel="canonical" href="https://cshengc.github.io/about/">
+<link rel="canonical" href="https://cshengc.github.io/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://cshengc.github.io/about/index.html","path":"about/index.html","title":"CaoSheng"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cshengc.github.io/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/","path":"2021/09/01/博客部署/博客部署工具/","title":"【博客】对博客部署小工具的介绍以及使用"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CaoSheng | 「和光同尘」
-</title>
+<title>【博客】对博客部署小工具的介绍以及使用 | 「和光同尘」</title>
   
 
 
@@ -146,7 +143,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -159,6 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#blog-helper"><span class="nav-number">1.</span> <span class="nav-text">BlogHelper</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tu-chuang"><span class="nav-number">2.</span> <span class="nav-text">图床</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#can-kao-wen-dang"><span class="nav-number">3.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -226,42 +224,185 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">CaoSheng
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cshengc.github.io/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CaoSheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="「和光同尘」">
+      <meta itemprop="description" content="苟日新，日日新，又日新">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【博客】对博客部署小工具的介绍以及使用 | 「和光同尘」">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【博客】对博客部署小工具的介绍以及使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-01 09:36:05" itemprop="dateCreated datePublished" datetime="2021-09-01T09:36:05+08:00">2021-09-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-17 00:23:09" itemprop="dateModified" datetime="2022-09-17T00:23:09+08:00">2022-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8D%9A%E5%AE%A2/%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">部署工具</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>477</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          <hr />
-<h4 id="center-span-class-md-colorify-md-colorify-warning-style-color-e-6-a-23-c-xi-wang-yong-bao-you-qu-ling-hun-qi-dai-yong-you-mei-hao-ming-tian-span" id="center-希望拥抱有趣灵魂，期待拥有美好明天"><center> <span class="md-colorify md-colorify--warning" style="color: #E6A23C;">希望拥抱有趣灵魂，期待拥有美好明天</span></h4>
-<p><img data-src="word_cloud_super_sayaren.png" alt="" /></p>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <center>本文主要用于记录，并使用写作工具对个人博客的资源进行管理。</center>
+ <span id="more"></span>
+<h1 id="blog-helper">BlogHelper</h1>
+<p>主要功能</p>
+<ul>
+<li>一键发布本地文章到知乎、简书、博客园、CSDN、掘金、SegmentFault (思否)、开源中国等平台。</li>
+<li>支持的图床有：新浪、<a target="_blank" rel="noopener" href="http://sm.ms/">SM.MS</a>、Github、Imgur、七牛云、腾讯云、阿里云、又拍云。</li>
+<li>支持快捷键上传剪贴板里第一张图片，更新剪贴板内容为图片链接。</li>
+<li>一键将本地文章中引用的本地图片上传到图床并替换为引用链接。</li>
+<li>对剪贴板拷贝的代码进行对齐操作，解决粘贴代码左侧留白的苦恼。</li>
+<li>一键将 HTML 文件转换为 Markdown 文本文件（支持批量）。</li>
+<li>对本地文章中的图片进行各种 DIY 操作，一键网络图片下载，一键本地文章整理。</li>
+<li>丰富的工具集，包括一键打开微信文章排版，一键打开图片素材网站等。</li>
+</ul>
+<p>我是用该工具进行本地图片的上传到图床并自动转换成链接到 md 文档。</p>
 <hr />
-<p>原  <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%88%AA%E5%A4%A9%E4%BA%8C%E9%99%A2706%E6%89%80/916644?fr=aladdin"><span class="md-colorify md-colorify--primary" style="color: #409EFF;"><strong>中航某二院706所</strong></span></a> | <em>基础软件技术中心</em> ｜<span class="md-colorify md-colorify--success" style="color: #67C23A;">软件设计师</span></p>
-<p>原 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E8%88%B9%E8%88%B6%E5%B7%A5%E4%B8%9A%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B%E7%A0%94%E7%A9%B6%E9%99%A2/57224211?fr=aladdin"><span class="md-colorify md-colorify--primary" style="color: #409EFF;"><strong>中船某系统院 5所</strong></span></a> | <em>机电产品室/集成联调部</em>｜<span class="md-colorify md-colorify--success" style="color: #67C23A;">系统调试工程师</span></p>
+<h1 id="tu-chuang">图床</h1>
+<p>因为使用的 github pages 白嫖的免费的个人主页的入口，以后可能会通过云服务器自建，或者买一些云服务厂商的服务进行个人站点以及图床资源站的配置。</p>
+<p>图床资源使用新浪图床。</p>
 <hr />
-<center>发呆患者
+<h1 id="can-kao-wen-dang">参考文档</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/onblogs/BlogHelper">写作工具 BlogHelper 项目地址 - GitHub</a></li>
+</ul>
 
-      </div>
-      
-      
-      
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CaoSheng
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cshengc.github.io/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/" title="【博客】对博客部署小工具的介绍以及使用">https://cshengc.github.io/2021/09/01/博客部署/博客部署工具/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/hexo-%E5%8D%9A%E5%AE%A2/" rel="tag"><i class="fa fa-tag"></i> hexo,博客</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/01/%E5%B7%A5%E5%85%B7%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86/%E5%AF%BC%E8%88%AA/" rel="prev" title="【导航】对个人关注界面的导航">
+                  <i class="fa fa-chevron-left"></i> 【导航】对个人关注界面的导航
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" rel="next" title="【hexo】对 hexo 博客部署平台的介绍以及使用">
+                  【hexo】对 hexo 博客部署平台的介绍以及使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
@@ -352,7 +493,7 @@
 
 
   <script src="https://unpkg.com/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://cshengc.github.io/about/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://cshengc.github.io/2021/09/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/"}</script>
   <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/quicklink.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
